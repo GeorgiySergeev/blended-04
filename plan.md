@@ -5,7 +5,8 @@
 ### Крок 2
 
 Виконай рефакторинг коду застосунку **"TODO LIST"**, додавши управління станом
-за допомогою бібліотеки [Redux Toolkit](https://redux-toolkit.js.org/).
+за допомогою бібліотеки [Redux Toolkit](https://redux-toolkitnpm install
+@reduxjs/toolkit.js.org/).
 
 Нехай Redux-state виглядає наступним чином.
 
