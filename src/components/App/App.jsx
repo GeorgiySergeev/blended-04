@@ -1,5 +1,9 @@
 import { nanoid } from 'nanoid';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { addTodo, getTodos } from "store/todoSlice";
+
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Container,
@@ -13,29 +17,27 @@ import {
 } from 'components';
 
 export const App = () => {
-  const [todos, setTodos] = useState(
-    () => JSON.parse(localStorage.getItem('todos')) ?? []
-  );
+  const dispatch = useDispatch();
+  const todos = useSelector(getTodos);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = text => {
+  const addTodos = text => {
     const todo = {
       id: nanoid(),
       text,
     };
-
-    setTodos(todos => [...todos, todo]);
+    dispatch(addTodo(todo))
   };
 
   const handleSubmit = data => {
-    addTodo(data);
+    addTodos(data);
   };
 
   const deleteTodo = id => {
-    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+    /*   setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id)); */
   };
 
   return (
