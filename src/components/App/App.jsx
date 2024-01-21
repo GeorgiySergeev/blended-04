@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid';
 import { useEffect } from 'react';
-import { addTodo, getTodos } from "store/todoSlice";
-
+import { addTodo, getTodos, deleteTodo } from 'store/todoSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -29,15 +28,15 @@ export const App = () => {
       id: nanoid(),
       text,
     };
-    dispatch(addTodo(todo))
+    dispatch(addTodo(todo));
   };
 
   const handleSubmit = data => {
     addTodos(data);
   };
 
-  const deleteTodo = id => {
-    /*   setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id)); */
+  const deleteTodos = id => {
+    dispatch(deleteTodo(id));
   };
 
   return (
@@ -59,7 +58,7 @@ export const App = () => {
                     id={todo.id}
                     text={todo.text}
                     counter={index + 1}
-                    onClick={deleteTodo}
+                    onClick={deleteTodos}
                   />
                 </GridItem>
               ))}
